@@ -8,6 +8,28 @@
 
         <div class="form-inputs">
 
+          <div class="row">
+            <div class="col-sm-6">
+              <div class="panel panel-primary well">
+                <div class="panel-heading">User Profile</div>
+                <br>
+                <p>
+                  <%= image_tag current_user.gravatar_url %>
+                </p>
+                <p>
+                  <strong>Name</strong>
+                  <%= current_user.name %>
+                </p>
+
+                <p>
+                  <strong>Email</strong>
+                  <%= current_user.email %>
+                </p>
+
+              </div>
+            </div>
+          </div>
+
           <div class="form-group">
             <%= f.label :name %>
             <%= f.text_field :name, class: "form-control", :autofocus => true %>
