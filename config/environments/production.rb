@@ -94,7 +94,7 @@ Rails.application.configure do
 
 
   #Enable this once i figure out the name of the heroku app
-  #config.action_mailer.default_url_options = { host: 'ketan-blockitoff.herokuapp.com' }
+  config.action_mailer.default_url_options = { host: 'ketan-blocmarks.herokuapp.com' }
 
 
 
