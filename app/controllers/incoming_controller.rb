@@ -7,7 +7,7 @@ class IncomingController < ApplicationController
 
     # Take a look at these in your server logs
     # to get a sense of what you're dealing with.
-    puts "INCOMING PARAMS HERE: #{params}"
+    Rails.logger.info "INCOMING PARAMS HERE: #{params}"
 
     # You put the message-splitting and business
     # magic here.
@@ -23,12 +23,14 @@ class IncomingController < ApplicationController
     # Now that you're sure you have a valid user and topic, build and save a new bookmark
 
     @user = User.find_by(email: params[:sender])
+    Rails.logger.info "User: #{@user.inspect}"
 
     if @user
       @topic = Topic.find_or_create_by(title: params[:subject])
       @bookmark = Bookmark.new(url: params["stripped-text"])
       @bookmark.user = @user
       @bookmark.topic = @topic
+      Rails.logger.info ">>>> bookmark: #{@bookmark.inspect}"
       @bookmark.save
     end
 
