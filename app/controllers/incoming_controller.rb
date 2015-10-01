@@ -25,24 +25,4 @@ class IncomingController < ApplicationController
     head 200
   end
 
-=begin
-    # Take a look at these in your server logs
-    # to get a sense of what you're dealing with.
-    Rails.logger.info "INCOMING PARAMS HERE: #{params}"
-
-    @user = User.find_by(email: params[:sender])
-    Rails.logger.info "User: #{@user.inspect}"
-
-    if @user
-      @topic = Topic.find_or_create_by(title: params[:subject])
-      @bookmark = Bookmark.new(url: params["stripped-text"])
-      @bookmark.user = @user
-      @bookmark.topic = @topic
-      Rails.logger.info ">>>> bookmark: #{@bookmark.inspect}"
-      @bookmark.save
-    end
-
-    head 200
-=end
-
 end
