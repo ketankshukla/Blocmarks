@@ -1,5 +1,7 @@
 Rails.application.configure do
 
+  #### Make sure you register for a free Mandrill account
+  #### Generate the API key on their site and use it for your password for the email that you registered
   #### USING MANDRILL MAILER FOR LOCAL DEPLOYMENT
 
   ActionMailer::Base.smtp_settings = {

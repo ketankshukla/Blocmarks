@@ -1,5 +1,8 @@
 Rails.application.configure do
 
+  #### Make sure you register for a sendgrid username and password on Heroku
+  #### type this - heroku addons:create sendgrid:starter
+
   #### USING SENDGRID MAILER FOR HEROKU
 
   ActionMailer::Base.smtp_settings = {
