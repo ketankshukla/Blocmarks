@@ -1,6 +1,14 @@
 <%= form_for [topic, bookmark] do |f| %>
-    <%= f.label :url %>
-    <%= f.text_field :url %>
 
-    <%= f.submit "Save" %>
+    <div class="form-group col-md-1">
+      <%= f.label :url %>
+    </div>
+      <div class="form-group col-md-4">
+      <%= f.text_field :url , class: "form-control"%>
+      </div>
+        <div class="form-group col-md-3">
+      <%= f.submit "Save" , class: "form-control btn btn-primary"%>
+    </div>
+
+
 <% end %>
