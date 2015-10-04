@@ -1,44 +1,39 @@
 class LikesController < ApplicationController
-  before_action :set_topic
-  before_action :set_bookmark
 
   def create
-    @like = current_user.likes.build( bookmark_id: @bookmark.id )
-    authorize @like
+    @bookmark = Bookmark.find(params[:bookmark_id])
+    like = current_user.likes.build(bookmark: @bookmark)
 
-    respond_to do |format|
-      if @like.save
-        format.html { redirect_to [ @bookmark.topic, @bookmark ], notice: 'Successfully liked bookmark!' }
-        format.js
-      else
-        format.html { redirect_to [ @bookmark.topic, @bookmark ], error: 'Error liking bookmark.'  }
-        format.js
+    if like.save
+      respond_to do |format|
+        format.html { redirect_to [ @bookmark.topic ], notice: 'Successfully liked bookmark!' }
+        format.js {}
+      end
+    else
+      respond_to do |format|
+        format.html { redirect_to [ @bookmark ], error: 'Error liking bookmark.'  }
+        format.js {}
       end
     end
   end
 
   def destroy
-    @like = current_user.likes.find_by( bookmark_id: @bookmark.id )
-    authorize @like
+    @bookmark = Bookmark.find(params[:bookmark_id])
+    like = current_user.likes.find(params[:id])
 
-    respond_to do |format|
-      if @like.destroy
-        format.html { redirect_to [ @bookmark.topic, @bookmark ], notice: 'Successfully unliking bookmark!' }
-        format.js
-      else
-        format.html { redirect_to [ @bookmark.topic, @bookmark ], error: 'Error unliking bookmark.'  }
-        format.js
+    if like.destroy
+      respond_to do |format|
+        format.html { redirect_to [ @bookmark.topic], notice: 'Successfully unliked  bookmark!' }
+        format.js {}
+      end
+    else
+      respond_to do |format|
+        format.html { redirect_to [ @bookmark.topic], error: 'Error unliking bookmark.'  }
+        format.js {}
       end
     end
   end
 
-  private
 
-  def set_topic
-    @topic = Topic.find(params[:topic_id])
-  end
 
-  def set_bookmark
-    @bookmark = @topic.bookmarks.find(params[:bookmark_id])
-  end
 end
