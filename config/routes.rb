@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
 
   devise_for :users
+  #resources :users, only: [:show]
+  resources :users, only: [:show]
   root 'topics#index'
   post :incoming, to: 'incoming#create'
 

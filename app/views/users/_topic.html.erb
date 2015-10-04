@@ -1,0 +1,11 @@
+<%= content_tag_for :div, topic, class: "row" do %>
+    <div>
+      <h3>
+        <%= link_to "#{topic.title}", topic_path( topic ), class:'button-space' %>
+      </h3>
+      <div class="row">
+        <%= render bookmarks %>
+      </div>
+    </div>
+
+<% end %>
